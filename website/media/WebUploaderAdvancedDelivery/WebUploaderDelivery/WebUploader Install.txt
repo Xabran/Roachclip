@@ -1,0 +1,67 @@
+WebUploader Install
+
+In order to install the WebUploader, please follow the steps below:
+
+- Upload the whole folder “WebUploader” to the root directory of your phpFox Installation
+- Open a browser and navigate to: http://yourdomain.com/WebUploader/install/install.php
+(The installer will attempt to create a new table in your database, which is needed for the Uploader to work)
+
+
+- Open your Admin Control Panel and go to:
+--> CMS
+--> Blocks
+--> Add New Block
+
+
+- “Block Details”
+Select the following options:
+
+Product  -->        phpFox
+Module -->         Photo
+Title -->               Whatever you want
+Type --> 	      PHP Code
+Controller -->    --photo.upload
+Placement -->   Block4 (You can basically choose whatever placement suits you)
+Active -->           Yes
+
+
+- “PHP/HTML Code (Optional)”
+“Copy and Paste” the following code into the TextArea:
+
+Code:
+---------------------------------------------------
+<?
+$user_id = Phpfox::getUserId();
+
+include('./include/setting/server.sett.php');
+include('./WebUploader/include/db.inc.php');
+include('./WebUploader/include/config.inc.php');
+include('./WebUploader/include/generateToken.php');
+include('./WebUploader/include/tokenManager.php');
+?>
+
+<iframe src ="http://YourDomain.com/WebUploader/WebUploader.php?userId=<? echo $user_id; ?>&token=<? echo $token; ?>&MaxFileSizeKB=<? echo $MaxFileSizeKB; ?>&MaxUploadSpaceKB=<? echo $MaxUploadSpaceKB; ?>&UserSpaceUsedKB=<? echo $UserSpaceUsedKB; ?>" frameborder="0" scrolling="no" width="100%" height="550">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+---------------------------------------------------       
+
+
+
+- User Group Access
+Choose which User Groups you want to allow access to the “WebUploader”
+
+- Click the “Submit” Button
+
+
+This last step is VERY important:
+- Please go to: Settings --> System Settings --> Manage Settings --> Photo
+Please click the “Submit” Button 
+
+
+A new Block containing the “WebUploader” has been created on:
+Explore --> Photos --> Upload a new Image
+
+You’re done :)
+
+For any questions please feel free to open a ticket on: http://support.uploadercentral.com or send us an email to: support@uploadercentral.com
+

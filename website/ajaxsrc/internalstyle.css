@@ -1,0 +1,31 @@
+body{
+      text-decoration: none;
+      font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 10pt;
+      text-align: left;
+      color: #454C43;    
+}
+.internalStyle
+    {
+      text-decoration: none;
+      font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 10pt;
+      text-align: left;
+      color: #454C43;
+    }
+.internalStyle_link
+    {
+      text-decoration: none;
+      font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+      font-style: normal;
+      text-decoration:underline;
+      font-weight: bold;
+      font-size: 10pt;
+      text-align: left;
+      color: #669a41;
+      cursor:pointer;
+    }

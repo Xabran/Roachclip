@@ -1,0 +1,11 @@
+//This is QuickBooks configuration File. It exists while users are connected
+// to a company file. Do not delete this file yourself. QuickBooks may not
+// operate correctly IF you manually delete this file.
+[NetConnect]
+ServerIp=75.179.139.214
+EngineName=QB_KAT0759-PC_22
+ServerPort=55348
+FilePath=C:\Users\kat0759\Documents\Intuit\Company Files\Banyan Enterprises, LLC.qbw
+ServerMode=1
+FileConnectionGuid=6232cb0fa7dd4f49ae1a76d62829ccad
+

@@ -1,0 +1,68 @@
+SET ALL BLOGS TO VIEWABLE BY EVERYBODY
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'comment', 'everyone',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'comment', 'owner_member',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'comment', 'owner_member_member',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'comment', 'owner_network',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'comment', 'registered',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'view', 'everyone',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'view', 'owner_member',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'view', 'owner_member_member',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'view', 'owner_network',0,1,NULL FROM engine4_blog_blogs;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'blog', blog_id, 'view', 'registered',0,1,NULL FROM engine4_blog_blogs;
+
+
+SELECT * FROM `engine4_authorization_allow` WHERE resource_type='blog'
+
+delete  FROM `engine4_authorization_allow` WHERE resource_type='blog'
+
+SET ALL VIDEOS TO VIEWABLE BY EVERYBODY
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'comment', 'everyone',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'comment', 'owner_member',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'comment', 'owner_member_member',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'comment', 'owner_network',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'comment', 'registered',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'view', 'everyone',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'view', 'owner_member',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'view', 'owner_member_member',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'view', 'owner_network',0,1,NULL FROM engine4_video_videos;
+INSERT INTO  `engine4_authorization_allow`  SELECT 'video', video_id, 'view', 'registered',0,1,NULL FROM engine4_video_videos;
+
+
+SELECT * FROM `engine4_authorization_allow` WHERE resource_type='video'
+
+DELETE FROM `engine4_authorization_allow` WHERE resource_type='video'
+
+RE-ORDER NETWORKS ALPHABETICALLY
+SET @counter:=0;
+UPDATE `engine4_user_fields_options` SET `order`=(SELECT @counter:=@counter+1)
+where field_id=16
+order by label
+
+BUILD & ORDER STATES ALPHABETICLALY
+SET @counter:=0;
+INSERT INTO `engine4_sitepage_page_fields_options`
+SELECT NULL, 50, alpha_code, (SELECT @counter:=@counter+1) FROM us_states ORDER BY alpha_code
+
+LINK NETWORKS TO PROFILE QUESTION (DIDN't FULLY WORK)
+INSERT INTO `engine4_network_networks` SELECT null,label,label,16,CONCAT('{"type":"select":"value":["',option_id, '"]}'),0,0,1 FROM engine4_user_fields_options WHERE field_id=16 ORDER BY label
+
+SQL QUERY FOR FESTIVAL GUIDE
+SELECT title,body,location,website,
+(SELECT label FROM engine4_sitepage_page_fields_values AS PV INNER JOIN engine4_sitepage_page_fields_options AS PO ON PV.value=PO.option_id WHERE item_id=PAGES.page_id AND PV.field_id=44),
+(SELECT value FROM engine4_sitepage_page_fields_values  WHERE item_id=PAGES.page_id AND field_id=45),
+(SELECT value FROM engine4_sitepage_page_fields_values  WHERE item_id=PAGES.page_id AND field_id=46),
+(SELECT value FROM engine4_sitepage_page_fields_values  WHERE item_id=PAGES.page_id AND field_id=47),
+(SELECT value FROM engine4_sitepage_page_fields_values  WHERE item_id=PAGES.page_id AND field_id=49),
+(SELECT value FROM engine4_sitepage_page_fields_values  WHERE item_id=PAGES.page_id AND field_id=52),
+(SELECT value FROM engine4_sitepage_page_fields_values  WHERE item_id=PAGES.page_id AND field_id=56)
+FROM `engine4_sitepage_pages` AS PAGES  
+WHERE category_id=53
+
+INSERT MASS LIKES
+INSERT INTO engine4_core_likes (resource_type,resource_id,poster_type,poster_id,creation_date) SELECT 'sitepage_page', page_id,'user',30,NOW() FROM engine4_sitepage_pages WHERE category_id=53;
+INSERT INTO engine4_core_likes (resource_type,resource_id,poster_type,poster_id,creation_date) SELECT 'sitepage_page', page_id,'user',1,NOW() FROM engine4_sitepage_pages WHERE category_id=53;
+INSERT INTO engine4_core_likes (resource_type,resource_id,poster_type,poster_id,creation_date) SELECT 'sitepage_page', page_id,'user',2,NOW() FROM engine4_sitepage_pages WHERE category_id=53;
+INSERT INTO engine4_core_likes (resource_type,resource_id,poster_type,poster_id,creation_date) SELECT 'sitepage_page', page_id,'user',3,NOW() FROM engine4_sitepage_pages WHERE category_id=53;
+INSERT INTO engine4_core_likes (resource_type,resource_id,poster_type,poster_id,creation_date) SELECT 'sitepage_page', page_id,'user',5,NOW() FROM engine4_sitepage_pages WHERE category_id=53;
+INSERT INTO engine4_core_likes (resource_type,resource_id,poster_type,poster_id,creation_date) SELECT 'sitepage_page', page_id,'user',4,NOW() FROM engine4_sitepage_pages WHERE category_id=53;
+UPDATE engine4_sitepage_pages set like_count = like_count+5 WHERE category_id=53;

@@ -1,0 +1,16 @@
+20120809 20:56:48: QFN: Beginning send to https://ofx-prod-brand.intuit.com/qb2200/fib.dll
+20120809 20:56:50: QFN: End send to https://ofx-prod-brand.intuit.com/qb2200/fib.dll, netstatus 0
+20120809 20:56:50: Marketing session sending to: http://www2.bankone.com/quicken/chaseqbindex.ini
+20120809 20:56:50: QFN: Beginning get from http://www2.bankone.com/quicken/chaseqbindex.ini
+20120809 20:56:54: QFN: End get from http://www2.bankone.com/quicken/chaseqbindex.ini, netstatus 0
+20120809 20:56:54: QFN: Beginning get from http://www2.bankone.com/chaseimages/quicken/qblogo.bmp
+20120809 20:56:54: QFN: End get from http://www2.bankone.com/chaseimages/quicken/qblogo.bmp, netstatus 0
+20120809 21:04:40: QFN: Beginning send to https://ofx-prod-brand.intuit.com/qb2200/fib.dll
+20120809 21:04:41: QFN: End send to https://ofx-prod-brand.intuit.com/qb2200/fib.dll, netstatus 0
+20120809 21:04:41: Marketing session sending to: http://www2.bankone.com/quicken/chaseqbindex.ini
+20120809 21:04:41: QFN: Beginning get from http://www2.bankone.com/quicken/chaseqbindex.ini
+20120809 21:04:41: QFN: End get from http://www2.bankone.com/quicken/chaseqbindex.ini, netstatus 0
+20120809 21:04:41: QFN: Beginning get from http://www2.bankone.com/chaseimages/quicken/qblogo.bmp
+20120809 21:04:41: QFN: End get from http://www2.bankone.com/chaseimages/quicken/qblogo.bmp, netstatus 0
+20120809 21:04:41: QFN: Beginning send to https://ofx.chase.com
+20120809 21:04:43: QFN: End send to https://ofx.chase.com, netstatus 0
